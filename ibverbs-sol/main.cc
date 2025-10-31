@@ -64,7 +64,7 @@ int send_data(const struct device_info &data, string ip)
 	servaddr.sin_port = htons(8080);
 
 	if (connect(sockfd, (struct sockaddr *)&servaddr, sizeof(servaddr)) != 0)
-		return 1;
+		return errno;
 
 	write(sockfd, &data, sizeof(data));
 
