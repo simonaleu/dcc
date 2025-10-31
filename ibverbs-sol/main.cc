@@ -31,7 +31,7 @@ int receive_data(struct device_info &data)
 
 	servaddr.sin_family = AF_INET; 
 	servaddr.sin_addr.s_addr = htonl(INADDR_ANY); 
-	servaddr.sin_port = htons(8080); 
+	servaddr.sin_port = htons(80800); 
 
 	if ((bind(sockfd, (struct sockaddr *)&servaddr, sizeof(servaddr))) != 0)
 		return 1;
@@ -62,7 +62,7 @@ int send_data(const struct device_info &data, string ip)
 	servaddr.sin_family = AF_INET;
 	servaddr.sin_addr.s_addr = inet_addr(ip.c_str());
 	cout << "Adresa ip in send " << ip.c_str() << endl;
-	servaddr.sin_port = htons(8080);
+	servaddr.sin_port = htons(80800);
 
 	if (connect(sockfd, (struct sockaddr *)&servaddr, sizeof(servaddr)) != 0)
 		return errno;
