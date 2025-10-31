@@ -57,7 +57,7 @@ int send_data(const struct device_info &data, string ip)
 
 	sockfd = socket(AF_INET, SOCK_STREAM, 0); 
 	if (sockfd == -1)
-		return 1;
+		return errno;
 
 	servaddr.sin_family = AF_INET;
 	servaddr.sin_addr.s_addr = inet_addr(ip.c_str());
@@ -317,7 +317,7 @@ int main(int argc, char *argv[])
 		ret = send_data(local, remote_ip_str);
 		if (ret != 0)
 		{
-			cerr << "send_data failed: " << endl;
+			cerr << "send_data failed: " << strerror(ret) << endl;
 			goto free_write_mr;
 		}
 	}
@@ -326,7 +326,7 @@ int main(int argc, char *argv[])
 		ret = send_data(local, remote_ip_str);
 		if (ret != 0)
 		{
-			cerr << "send_data failed: " << endl;
+			cerr << "send_data failed: " << strerror(ret) << endl;
 			goto free_write_mr;
 		}
 
